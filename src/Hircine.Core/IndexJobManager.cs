@@ -57,7 +57,7 @@ namespace Hircine.Core
                         var instance = _ravenInstanceFactory.GetRavenConnection(connection);
                         instance.Initialize();
                         instance.JsonRequestFactory.
-                            EnableBasicAuthenticationOverUnsecureHttpEvenThoughPasswordsWouldBeSentOverTheWireInClearTextToBeStolenByHackers = BuildInstructions.UseUserNamePasswordWithoutSSL;
+                            EnableBasicAuthenticationOverUnsecuredHttpEvenThoughPasswordsWouldBeSentOverTheWireInClearTextToBeStolenByHackers = BuildInstructions.UseUserNamePasswordWithoutSSL;
 
                         RavenInstances.Add(connection, instance);
                     }

@@ -2,8 +2,9 @@ GEM
   remote: http://rubygems.org/
   remote: http://gemcutter.org/
   specs:
-    albacore (0.3.0)
+    albacore (0.3.5)
       rubyzip
+    rake (10.1.0)
     rubyzip (0.9.9)
     version_bumper (0.3.0)
 
@@ -12,4 +13,5 @@ PLATFORMS
 
 DEPENDENCIES
   albacore (~> 0.3.0)
+  rake
   version_bumper

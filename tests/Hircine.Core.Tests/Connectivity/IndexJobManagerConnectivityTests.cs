@@ -43,11 +43,10 @@ namespace Hircine.Core.Tests.Connectivity
         }
 
         [Test(Description = "Should report that the connection was unsuccessful to a database that does not exist")]
+		 [ExpectedException(typeof(ArgumentException))]
         public void Should_Report_Unsuccessful_Connection_to_Nonexistant_Database()
         {
-            //Create a connection string using a random guid as the name of a local database
-            var connectionString = RavenConnectionStringBuilder.BuildConnectionString("http://localhost:8080",
-                                                                                      Guid.NewGuid().ToString());
+            var connectionString = RavenConnectionStringBuilder.BuildConnectionString("http://localhost:8080",null);
             //Build our command object
             var commandObject = new IndexBuildCommand()
             {

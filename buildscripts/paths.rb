@@ -20,13 +20,13 @@ Folders={
 	:hircine_nuspec => {
 			:root => File.join("build", "nuget", Projects[:hircine][:dir]),
 			:lib => File.join("build", "nuget", Projects[:hircine][:dir], "lib"),
-			:net40 => File.join("build", "nuget", Projects[:hircine][:dir], "lib", "net40"),
+			:net45 => File.join("build", "nuget", Projects[:hircine][:dir], "lib", "net45"),
 	},
 
 	:hircine_core_nuspec => {
 			:root => File.join("build", "nuget", Projects[:hircine_core][:dir]),
 			:lib => File.join("build", "nuget", Projects[:hircine_core][:dir], "lib"),
-			:net40 => File.join("build", "nuget", Projects[:hircine_core][:dir], "lib", "net40"),
+			:net45 => File.join("build", "nuget", Projects[:hircine_core][:dir], "lib", "net45"),
 	},
 
 	:ilmerge => File.join("tools", "ilmerge"),
@@ -64,14 +64,14 @@ Files = {
 		'Hircine.Core.dll',
 
 		#RavenDB client assemblies
-		'Raven.Abstractions.dll',  
-		'Raven.Client.Lightweight.dll',
+		'Raven.Abstractions-4.5.dll',  
+		'Raven.Client.Lightweight-4.5.dll',
 		'NLog.dll',
 		'Newtonsoft.Json.dll',
 
 		#Load RavenDB embedded server assemblies
-		'Raven.Client.Embedded.dll',
-		'Raven.Database.dll', 
+		'Raven.Client.Embedded-4.5.dll',
+		'Raven.Database-4.5.dll', 
 		'Raven.Munin.dll', 
 		'Raven.Storage.Esent.dll', 
 		'Raven.Storage.Managed.dll', 

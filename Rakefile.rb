@@ -143,10 +143,10 @@ task :create_output_folders => :set_output_folders do
 	create_dir(Folders[:nuget_build])
 	create_dir(Folders[:hircine_nuspec][:root])
 	create_dir(Folders[:hircine_nuspec][:lib])
-	create_dir(Folders[:hircine_nuspec][:net40])
+	create_dir(Folders[:hircine_nuspec][:net45])
 	create_dir(Folders[:hircine_core_nuspec][:root])
 	create_dir(Folders[:hircine_core_nuspec][:lib])
-	create_dir(Folders[:hircine_core_nuspec][:net40])
+	create_dir(Folders[:hircine_core_nuspec][:net45])
 end
 
 output :core_static_output do |out|
@@ -163,18 +163,18 @@ output :app_static_output do |out|
 	out.file Files[:license]
 end
 
-output :core_net40_output => [:core_static_output] do |out|
+output :core_net45_output => [:core_static_output] do |out|
 	out.from Folders[:hircine_core_bin]
 	create_dir(Folders[:hircine_core_nuspec][:lib])
-	out.to Folders[:hircine_core_nuspec][:net40]
+	out.to Folders[:hircine_core_nuspec][:net45]
 	out.file Files[:hircine_core][:bin]
 end
 
 
-output :app_net40_output => [:app_static_output] do |out|
+output :app_net45_output => [:app_static_output] do |out|
 	out.from Folders[:hircine_bin]
 	create_dir(Folders[:hircine_nuspec][:lib])
-	out.to Folders[:hircine_nuspec][:net40]
+	out.to Folders[:hircine_nuspec][:net45]
 	out.file Files[:hircine][:bin], :as => 'hircine.exe'
 	Files[:nuspec_assemblies].each do |assembly|
 		puts assembly
@@ -195,7 +195,7 @@ nuspec :core_nuspec do |nuspec|
 	nuspec.language = Projects[:language]
 	nuspec.licenseUrl = Projects[:licenseUrl]
 	nuspec.projectUrl = Projects[:projectUrl]
-	nuspec.dependency "RavenDB.Embedded", "1.0.960"
+	nuspec.dependency "RavenDB.Embedded", "2.5.2666"
 	nuspec.output_file = File.join(Folders[:nuget_build], "#{Projects[:hircine_core][:id]}-v#{env_buildversion}(#{@env_buildconfigname}).nuspec")
 	nuspec.tags = "ravendb, indexes, raven, index"
 end
@@ -217,14 +217,14 @@ end
 # NuGet (Pack)
 #----------------------------------
 
-nugetpack :core_pack => [:test, :core_net40_output, :core_nuspec] do |nuget|
+nugetpack :core_pack => [:test, :core_net45_output, :core_nuspec] do |nuget|
 	nuget.command = Commands[:nuget]
 	nuget.nuspec = File.join(Folders[:nuget_build], "#{Projects[:hircine_core][:id]}-v#{env_buildversion}(#{@env_buildconfigname}).nuspec")
 	nuget.base_folder = Folders[:hircine_core_nuspec][:root]
 	nuget.output = Folders[:nuget_build]
 end
 
-nugetpack :app_pack => [:test, :app_net40_output, :app_nuspec] do |nuget|
+nugetpack :app_pack => [:test, :app_net45_output, :app_nuspec] do |nuget|
 	nuget.command = Commands[:nuget]
 	nuget.nuspec = File.join(Folders[:nuget_build], "#{Projects[:hircine][:id]}-v#{env_buildversion}(#{@env_buildconfigname}).nuspec")
 	nuget.base_folder = Folders[:hircine_nuspec][:root]
